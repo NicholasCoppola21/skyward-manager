@@ -3,15 +3,15 @@
 ## NOTE: This project is currently in a PoC state and may not operate as you might expect.
 
 ## Goals:
-- Log into Skyward [ ]
-- Pull grades [x]
-- Parse out all grade information by class [ ]
-- Calculate GPA by finding the tier of class [ ]
-- Format into a Discord Bot [ ]
-- Integrate data into a database [ ]
-- Compare against other user feature (Leaderboard?) [ ] 
-- Live monitor grades by checking every 30 minutes and notify user of any changes [ ] 
-- Clean up code and make it look presentable [ ]
+- [x] Log into Skyward 
+- [x] Pull grades [x]
+- [ ] Parse out all grade information by class
+- [ ] Calculate GPA by finding the tier of class 
+- [ ] Format into a Discord Bot
+- [ ] Integrate data into a database
+- [ ] Compare against other user feature (Leaderboard?)
+- [ ] Live monitor grades by checking every 30 minutes and notify user of any changes
+- [ ] Clean up code and make it look presentable
 
 ## Current Setup Guide
 
