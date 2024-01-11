@@ -4,7 +4,7 @@
 
 ## Goals:
 - [x] Log into Skyward 
-- [x] Pull grades [x]
+- [x] Pull grades
 - [ ] Parse out all grade information by class
 - [ ] Calculate GPA by finding the tier of class 
 - [ ] Format into a Discord Bot
