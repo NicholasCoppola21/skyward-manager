@@ -17,7 +17,7 @@ import "dotenv/config";
 import { writeFile } from "fs/promises";
 import { request } from "undici";
 
-const EMAIL = process.env.SKYWARD_EMAIL;
+const EMAIL = process.env.SYWARD_EMAIL;
 const PASSWORD = process.env.SKYWARD_PASSWORD;
 
 if (!EMAIL) {

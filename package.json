@@ -4,10 +4,12 @@
   "main": "dist/main.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "watch:start": "tsc-watch --onSuccess \"yarn start\"",
+    "build": "yarn lint && tsc",
+    "watch": "tsc-watch --onSuccess \"yarn watch:start\"",
+    "watch:start": "yarn lint && yarn start",
     "start": "node --import=extensionless/register .",
-    "dev": "yarn build && yarn start"
+    "dev": "yarn build && yarn start",
+    "lint": "npx eslint --fix"
   },
   "eslintConfig": {
     "extends": "@sapphire"

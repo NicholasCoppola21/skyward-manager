@@ -33,3 +33,22 @@
     - Rebuild & Restart on file save (Used for rapid prototyping) (Dangerous: Can block your account due to rapid login attempts) `yarn watch:start`
 
 After you've setup & run the file, it should output a file called `gradebook_test.html` which cannot be opened with a browser (succesfully) but can be opened in a text editor and you can confirm that your grades are there.
+
+## Contributing
+- Follow the setup guide above
+
+### Setting up the linter
+
+If you're using VSCode.. (OPTIONAL)
+- Grab the ESLint extension and set it up as a formatter
+- After you get the official extension go into your settings and lookup `eslint format` and enable it.
+- Then enable formatting on save to automatically have the file format on save.
+- Open up a TypeScript file and hit `CTRL + SHIFT + P` and lookup `Format Document With..` and register ESLint as your default formatter
+- Alternatively, you can just run `yarn lint`, or any of the precompiled scripts mentioned in setup, and it will automatically format and attempt to fix any issues.
+
+
+1. Make your changes and be sure to test them and lint them.
+2. Open up a PR on this repo and describe your changes!
+3. For the commmit, you should try to follow [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), however it's not necessarily required as it can be edited later.
+
+
