@@ -1492,9 +1492,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"skyward-watcher@workspace:.":
+"skyward-manager@workspace:.":
   version: 0.0.0-use.local
-  resolution: "skyward-watcher@workspace:."
+  resolution: "skyward-manager@workspace:."
   dependencies:
     "@sapphire/eslint-config": "npm:^5.0.1"
     "@sapphire/ts-config": "npm:^4.0.1"
