@@ -3,15 +3,12 @@
 ## NOTE: This project is currently in a PoC state and may not operate as you might expect.
 
 ## Goals:
-- [x] Log into Skyward 
-- [x] Pull grades
-- [ ] Parse out all grade information by class
-- [ ] Calculate GPA by finding the tier of class 
-- [ ] Format into a Discord Bot
-- [ ] Integrate data into a database
-- [ ] Compare against other user feature (Leaderboard?)
-- [ ] Live monitor grades by checking every 30 minutes and notify user of any changes
-- [ ] Clean up code and make it look presentable
+- [ ] Create a structured slash command handler w / event support
+- [ ] Implement way to load RSA private key at load time such that it only ever exists in memory and use this to encrypt values
+- [ ] Allow users to provide their Skyward credentials, allow them to save an encrypted version using the above strategy
+- [ ] Use these credentials to interface with [ccisd-skyward](https://github.com/NicholasCoppola21/ccisd-skyward)
+- [ ] Cache all user info (encrypted) to prevent as much spam as possible, include delete all data function.
+- [ ] Use the cached assignment data to fetch new assignments automatically (after user enables)
 
 ## Current Setup Guide
 
@@ -30,7 +27,7 @@
 1. Couple options for running the code:
     - Build and then run by doing `yarn build` and then run with `yarn start`
     - Build and then run in a single command (Used for testing) `yarn dev`
-    - Rebuild & Restart on file save (Used for rapid prototyping) (Dangerous: Can block your account due to rapid login attempts) `yarn watch:start`
+    - Rebuild & Restart on file save (Used for rapid prototyping) (**Dangerous**: Can block your account due to rapid login attempts) `yarn watch:start`
 
 After you've setup & run the file, it should output a file called `gradebook_test.html` which cannot be opened with a browser (succesfully) but can be opened in a text editor and you can confirm that your grades are there.
 
