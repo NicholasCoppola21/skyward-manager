@@ -3,7 +3,7 @@
 ## NOTE: This project is currently in a PoC state and may not operate as you might expect.
 
 ## Goals:
-- [ ] Create a structured slash command handler w / event support
+- [x] Create a structured slash command handler
 - [ ] Implement way to load RSA private key at load time such that it only ever exists in memory and use this to encrypt values
 - [ ] Allow users to provide their Skyward credentials, allow them to save an encrypted version using the above strategy
 - [ ] Use these credentials to interface with [ccisd-skyward](https://github.com/NicholasCoppola21/ccisd-skyward)
