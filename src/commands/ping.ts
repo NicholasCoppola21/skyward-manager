@@ -16,7 +16,7 @@ export default class PingCommand extends SlashCommand {
     const response = await i.reply({ content: "Pinging.." });
 
     return void i.editReply({
-      content: `${Date.now() - response.createdTimestamp}`,
+      content: `${Date.now() - response.createdTimestamp}ms`,
     });
   }
 }

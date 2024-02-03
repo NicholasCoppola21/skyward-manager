@@ -2,6 +2,7 @@ import { Client, Collection, IntentsBitField } from "discord.js";
 import "dotenv/config";
 import { readdir } from "fs/promises";
 import type SlashCommand from "./SlashCommand";
+import { logger } from "./logger";
 
 const client = new Client({ intents: [IntentsBitField.Flags.Guilds] });
 
@@ -31,4 +32,12 @@ client.on("ready", (client) => {
       .map((_, k) => `/${k}`)
       .join("\n")}`,
   );
+});
+
+client.on("interactionCreate", (i) => {
+  if (i.isChatInputCommand()) {
+    if (commands.has(i.commandName)) {
+      void commands.get(i.commandName)!.run(i).catch(logger.error);
+    }
+  }
 });
