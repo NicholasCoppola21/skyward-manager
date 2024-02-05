@@ -632,13 +632,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ccisd-skyward@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "ccisd-skyward@npm:2.0.0"
+"ccisd-skyward@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "ccisd-skyward@npm:2.0.1"
   dependencies:
     pdfreader: "npm:^3.0.2"
     undici: "npm:^6.3.0"
-  checksum: 482f89d6022773fdc6a8521342d8b3816d41ef721e8d300d1a0ade0f117ce366e92f5053653eab23693448984ffed0ea554cd9c0dc3f2a85a5c943b1c3340210
+  checksum: 0515e8fae234abdb5a1fd0a16c22ed094dc71da7a7958f69998d0b568ee9ddf9db1fda712e10e17f6e30fef1d5e7798d7edf52f72c3a2ce6af3a216304fc83a2
   languageName: node
   linkType: hard
 
@@ -1817,7 +1817,7 @@ __metadata:
     "@sapphire/ts-config": "npm:^4.0.1"
     "@skyra/logger": "npm:^2.0.3"
     "@types/node": "npm:^20.4.10"
-    ccisd-skyward: "npm:^2.0.0"
+    ccisd-skyward: "npm:^2.0.1"
     discord.js: "npm:^14.14.1"
     dotenv: "npm:^16.3.1"
     extensionless: "npm:^1.5.6"
