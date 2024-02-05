@@ -4,10 +4,9 @@
 
 ## Goals:
 - [x] Create a structured slash command handler
-- [ ] Implement way to load RSA private key at load time such that it only ever exists in memory and use this to encrypt values
-- [ ] Allow users to provide their Skyward credentials, allow them to save an encrypted version using the above strategy
+- [x] Allow users to provide their Skyward credentials and save them
 - [ ] Use these credentials to interface with [ccisd-skyward](https://github.com/NicholasCoppola21/ccisd-skyward)
-- [ ] Cache all user info (encrypted) to prevent as much spam as possible, include delete all data function.
+- [ ] Cache all user info  to prevent as much spam as possible, include delete all data function.
 - [ ] Use the cached assignment data to fetch new assignments automatically (after user enables)
 
 ## Current Setup Guide
@@ -18,6 +17,8 @@
 ### Prerequisites
 - NodeJS v21 or later
 - Yarn V4
+- Postgresql database 
+- General knowledge of Postgresql
 - General knowledge of programming
 
 ### Setup

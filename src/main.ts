@@ -37,7 +37,10 @@ client.on("ready", (client) => {
 client.on("interactionCreate", (i) => {
   if (i.isChatInputCommand()) {
     if (commands.has(i.commandName)) {
-      void commands.get(i.commandName)!.run(i).catch(logger.error);
+      void commands
+        .get(i.commandName)!
+        .run(i)
+        .catch((e) => logger.error(e));
     }
   }
 });
