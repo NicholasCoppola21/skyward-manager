@@ -9,7 +9,7 @@ import {
   SkywardAccountManager,
   SkywardError,
   type ReportCard,
-  calcSemesterGPA,
+  calcSemesterGPA as calcCCISDSemesterGPA,
   avgArray,
 } from "ccisd-skyward";
 
@@ -37,6 +37,26 @@ export default class GPACommand extends SlashCommand {
           {
             name: "9th grade",
             value: 9,
+          },
+        )
+        .setRequired(true),
+    )
+    .addStringOption((s) =>
+      s
+        .setName("type")
+        .setDescription("The type of GPA average you want to calculate")
+        .setChoices(
+          {
+            name: "CCISD",
+            value: "CCISD",
+          },
+          {
+            name: "Unweighted (Unweighted) GPA",
+            value: "UNWEIGHTED",
+          },
+          {
+            name: "All",
+            value: "ALL",
           },
         )
         .setRequired(true),
@@ -83,6 +103,7 @@ export default class GPACommand extends SlashCommand {
     const grade = i.options.getNumber("grade", true);
     if (grade < 9 || grade > 12)
       return void i.editReply({ content: "Grade must be between 9-12" });
+    const type: string = i.options.getString("type", false) ?? "CCISD";
 
     // the most recent report card is the most updated for this person, trimming out progress and staar EOCs
 
@@ -118,35 +139,79 @@ export default class GPACommand extends SlashCommand {
       });
 
     let text = "";
-    const gpas: number[] = [];
-    for (const reportCard of reportCards as ReportCard[]) {
-      text += `__**${reportCard.name}**__\n`;
-      const s1 = calcSemesterGPA(reportCard, "SM1");
-      const s2 = calcSemesterGPA(reportCard, "SM2");
-      const semGPAs = [];
+    const calc = (type: string) => {
+      const gpas: number[] = [];
+      for (const reportCard of reportCards as ReportCard[]) {
+        text += `__**${type} ${reportCard.name}**__\n`;
+        const s1 =
+          type === "CCISD"
+            ? calcCCISDSemesterGPA(reportCard, "SM1")
+            : GPACommand.calcUnweightedGPA(reportCard, "SM1");
+        const s2 =
+          type === "CCISD"
+            ? calcCCISDSemesterGPA(reportCard, "SM2")
+            : GPACommand.calcUnweightedGPA(reportCard, "SM2");
 
-      if (s1) {
-        semGPAs.push(s1);
-        gpas.push(s1);
+        const semGPAs = [];
 
-        text += `Semester 1 GPA: ${GPACommand.nf(s1)}\n`;
+        if (s1) {
+          semGPAs.push(s1);
+          gpas.push(s1);
+
+          text += `Semester 1 GPA: ${GPACommand.nf(s1)}\n`;
+        }
+
+        if (s2) {
+          semGPAs.push(s2);
+          gpas.push(s2);
+
+          text += `Semester 2 GPA: ${GPACommand.nf(s2)}\n`;
+        }
+
+        text += `GPA for Report Card: ${GPACommand.nf(avgArray(semGPAs))}\n`;
       }
+      text += `\nOverall GPA: ${GPACommand.nf(avgArray(gpas))}/${
+        type === "CCISD" ? 6 : 4
+      }`;
+    };
 
-      if (s2) {
-        semGPAs.push(s2);
-        gpas.push(s2);
-
-        text += `Semester 2 GPA: ${GPACommand.nf(s2)}\n`;
-      }
-
-      text += `GPA for Report Card: ${GPACommand.nf(avgArray(semGPAs))}\n`;
+    switch (type) {
+      case "CCISD":
+        calc("CCISD");
+        break;
+      case "UNWEIGHTED":
+        calc("UNWEIGHTED");
+        break;
+      case "ALL":
+        calc("CCISD");
+        text += "\n\n";
+        calc("SMIPLE");
     }
-
-    text += `\nOverall GPA: ${GPACommand.nf(avgArray(gpas))}`;
 
     return void i.editReply({
       content: text,
     });
+  }
+
+  private static calcUnweightedGPA(
+    reportCard: ReportCard,
+    semester: "SM1" | "SM2",
+  ): null | number {
+    const gpas = [];
+
+    for (const c of reportCard.classes) {
+      const term = c.terms.find((a) => a.term === semester);
+      if (!term) return null;
+      const grade = Number(term.grade);
+
+      if (grade >= 90) gpas.push(4.0);
+      else if (grade >= 80) gpas.push(3.0);
+      else if (grade >= 70) gpas.push(2.0);
+      else if (grade >= 60) gpas.push(1.0);
+      else gpas.push(0.0);
+    }
+
+    return avgArray(gpas);
   }
 
   private static nf(n: number): number {
